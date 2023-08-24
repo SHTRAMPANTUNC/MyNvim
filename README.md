@@ -1,6 +1,8 @@
 <h1>Its Just my little config for nvim</h1> 
   <h3>The config was made for C++ and TypeScript</h3>
+
 ![nvim screenshot](./images/nvim-dashboard.png)
+
   <p></p>
   <h3>Plugin list:</h3>
 
