@@ -78,6 +78,7 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-cmdline" },
+  { "hrsh7th/cmp-nvim-lsp-signature-help" },
 
 	{
 		"hrsh7th/nvim-cmp",
@@ -129,6 +130,12 @@ require("lazy").setup({
 		"nvimdev/lspsaga.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 	},
+
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+  },
 
 	{
 		"williamboman/mason.nvim",

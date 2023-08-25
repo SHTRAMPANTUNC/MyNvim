@@ -25,3 +25,6 @@ require("lsp.lspconfig")
 require("lsp.lspsaga")
 require("lsp.null-ls")
 require("lsp.mason")
+
+
+vim.cmd [[autocmd BufEnter * set fo-=c fo-=r fo-=o]]
