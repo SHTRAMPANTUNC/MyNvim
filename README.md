@@ -21,8 +21,21 @@
 - [Trouble.nvim](https://github.com/folke/trouble.nvim)
 - [git.nvim](https://github.com/dinhhuy258/git.nvim)
 
+## Requires
+
+- [Neovim](https://neovim.io/) (>= 0.8)
+- Fish
+- Python
+- Npm
+
 ## Install
 
 ```text
 git clone https://github.com/SHTRAMPANTUNC/MyNvim
+```
+
+## Move Files
+
+```text
+mv MyNvim/* ~/.config/nvim
 ```
