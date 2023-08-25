@@ -26,6 +26,7 @@ require("dashboard").setup({
 			[[                                                                                         ]],
 			[[                                                                                         ]],
 		},
+    disable_move = true,
 		shortcut = {
 			{ desc = "  Plugins", group = "@property", action = "Lazy", key = "l" },
 			{

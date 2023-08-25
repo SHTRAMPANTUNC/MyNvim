@@ -26,6 +26,14 @@ require("lazy").setup({
 		"phaazon/hop.nvim",
 	},
 
+  {
+  'nvimdev/hlsearch.nvim',
+   event = 'BufRead',
+   config = function()
+      require('hlsearch').setup()
+   end
+  },
+
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = true,
