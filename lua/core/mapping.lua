@@ -10,7 +10,7 @@ keymap.set("n", "x", '"_x')
 keymap.set("i", "jj", "<ESC>")
 
 keymap.set("n", "<C-q>", ":q!<CR>")
-keymap.set("n", "<C-s>", ":w!<CR>")
+keymap.set("n", "<C-s>", ":noautocmd w!<CR>")
 
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")

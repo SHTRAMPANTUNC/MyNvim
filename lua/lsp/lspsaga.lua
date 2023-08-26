@@ -28,4 +28,5 @@ local opts = { noremap = true, silent = true }
 		vim.keymap.set("n", "<leader>so", ":Lspsaga outline<CR>", opts)
 		vim.keymap.set("n", "gr", ":Lspsaga rename<CR>", opts)
     vim.keymap.set('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    vim.keymap.set('n', '<Leader>lf',function() vim.lsp.buf.format {async = true} end, opts)
 

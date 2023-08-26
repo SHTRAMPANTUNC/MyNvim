@@ -123,7 +123,26 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 	},
 
+  {
+    "folke/zen-mode.nvim",
+  },
 
+  {
+    'mattn/emmet-vim',
+     event = LspAttach,
+     ft = {"html"}
+  },
+
+  -- {
+  --   "iamcco/markdown-preview.nvim"
+  -- },
+
+  {
+    "ur4ltz/surround.nvim",
+    config = function()
+      require"surround".setup {mappings_style = "sandwich"}
+    end
+  },
 
 	--LSP
 	{

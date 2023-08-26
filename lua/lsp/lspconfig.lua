@@ -2,27 +2,28 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Sntup language servers.
-local lspconfig = require("lspconfig")
-lspconfig.pyright.setup({})
-lspconfig.cmake.setup({})
-lspconfig.tsserver.setup({
+local lsp = require("lspconfig")
+
+lsp.pyright.setup({})
+-- lsp.lua.setup({})
+lsp.tsserver.setup({
 	on_attach = on_attach,
 	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 	cmd = { "typescript-language-server", "--stdio" },
 	capabilities = capabilities,
 })
 
-lspconfig.cssls.setup({
+lsp.cssls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
 
-lspconfig.tailwindcss.setup({
+lsp.tailwindcss.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
 
-require("lspconfig").clangd.setup({
+lsp.clangd.setup({
 	cmd = {
 		"clangd",
 		"--offset-encoding=utf-16",
@@ -37,6 +38,7 @@ require("lspconfig").clangd.setup({
 	init_option = { fallbackFlags = { "-std=c++2a" } },
 	capabilities = custom_capabilities,
 })
+
 
 vim.diagnostic.config({
   virtual_text = {

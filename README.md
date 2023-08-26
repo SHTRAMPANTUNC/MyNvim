@@ -3,6 +3,10 @@
 
 ![nvim screenshot](./images/nvim-dashboard.png)
 
+<p></p>
+
+![nvim screenshot](./images/nvim-exampleCode.png)
+
   <p></p>
   <h3>Plugin list:</h3>
 

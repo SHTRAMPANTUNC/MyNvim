@@ -1,4 +1,5 @@
 vim.cmd("autocmd!")
+vim.cmd([[ command! U Lazy update ]])
 
 --UTF-8
 vim.scriptencoding = "utf-8"
@@ -8,9 +9,6 @@ vim.opt.fileencoding = "utf-8"
 --numberline
 vim.wo.number = true
 vim.wo.relativenumber = true
-
---ui
-vim.opt.pumheight = 13
 
 --Opt
 vim.opt.title = true
@@ -34,7 +32,10 @@ vim.opt.tabstop = 2
 vim.opt.wrap = false
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.path:append({ "**" })
+vim.opt.wildignore:append { '*/node_modules/*' }
+vim.opt.pumheight = 15
 vim.opt.swapfile = false
+vim.opt.signcolumn = "yes"
 
 --Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
@@ -45,6 +46,9 @@ vim.opt.clipboard:append({ "unnamedplus" })
 
 --LSP Diagnostic
 vim.fn.sign_define("DiagnosticSignError", { texthl = "DiagnosticSignError", text = "🤮", numhl = "" })
-vim.fn.sign_define("DiagnosticSignWarn", { texthl = "DiagnosticSignWarn", text = "🤢", numhl = "" })
-vim.fn.sign_define("DiagnosticSignHint", { texthl = "DiagnosticSignHint", text = "🤯", numhl = "" })
-vim.fn.sign_define("DiagnosticSignInfo", { texthl = "DiagnosticSignInfo", text = "🤔", numhl = "" })
+vim.fn.sign_define("DiagnosticSignWarn",  { texthl = "DiagnosticSignWarn",  text = "🤢", numhl = "" })
+vim.fn.sign_define("DiagnosticSignHint",  { texthl = "DiagnosticSignHint",  text = "🤯", numhl = "" })
+vim.fn.sign_define("DiagnosticSignInfo",  { texthl = "DiagnosticSignInfo",  text = "🤔", numhl = "" })
+
+--Comment
+vim.cmd [[autocmd BufEnter * set fo-=c fo-=r fo-=o]]

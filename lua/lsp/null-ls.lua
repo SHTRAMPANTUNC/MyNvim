@@ -3,6 +3,10 @@ if not status then
 	return
 end
 
+    local formatting = null_ls.builtins.formatting
+    local diagnostics = null_ls.builtins.diagnostics
+    local code_actions = null_ls.builtins.code_actions
+
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local lsp_formatting = function(bufnr)
@@ -16,9 +20,15 @@ end
 
 null_ls.setup({
 	sources = {
-		null_ls.builtins.formatting.clang_format,
-		null_ls.builtins.formatting.prettierd,
-		null_ls.builtins.diagnostics.fish,
+		formatting.clang_format,
+		formatting.prettierd,
+		formatting.stylua,
+    -- diagnostics.eslint_d,
+    diagnostics.cpplint.with({
+			filter = function(diagnostic)
+				return not diagnostic.message:match("No copyright")
+			end,
+    }),
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
