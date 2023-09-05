@@ -1,37 +1,52 @@
-
---Core req
-require("core.base")
-require("plugins.lazy")
-require("core.mapping")
 require("core.colors")
+require("core.base")
+require("core.map")
 
---Plugins req
--- -ui
-require("plugins.configs.ui.nvimtree")
-require("plugins.configs.ui.icon")
-require("plugins.configs.ui.buffers")
-require("plugins.configs.ui.lualine")
-require("plugins.configs.ui.dashboard")
--- -editor
-require("plugins.configs.editor.hop")
-require("plugins.configs.editor.autopairs")
-require("plugins.configs.editor.comments")
-require("plugins.configs.editor.cmp")
--- -git
-require("plugins.configs.git.gitsings")
-require("plugins.configs.git.git")
--- -other
-require("plugins.configs.treesitter")
-require("plugins.configs.telescope")
-require("plugins.configs.toggleterm")
-require("plugins.configs.trouble")
-require("plugins.configs.zen")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local configs = "plugins"
 
---LSP req
-require("lsp.lspconfig")
-require("lsp.lspsaga")
-require("lsp.null-ls")
-require("lsp.mason")
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--single-branch",
+		"https://github.com/folke/lazy.nvim.git",
+		lazypath,
+	})
+end
 
+vim.opt.runtimepath:prepend(lazypath)
 
---(╯°□°）╯︵ ┻━┻)
+require("lazy").setup(configs, {
+	defaults = {
+		lazy = true,
+	},
+
+	ui = {
+
+		icons = {
+			cmd = " ",
+			config = "",
+			event = "",
+			ft = " ",
+			init = " ",
+			import = " ",
+			keys = " ",
+			lazy = "󰒲 ",
+			loaded = "●",
+			not_loaded = "○",
+			plugin = " ",
+			runtime = " ",
+			source = " ",
+			start = "",
+			task = "✔ ",
+			list = {
+				"●",
+				"➜",
+				"★",
+				"‒",
+			},
+		},
+	},
+})
