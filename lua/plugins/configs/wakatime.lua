@@ -1,7 +1,7 @@
 return {
 	{
 		"wakatime/vim-wakatime",
-		enable = true,
+        enabled = false,
 		event = { "BufReadPost" },
 	},
 }

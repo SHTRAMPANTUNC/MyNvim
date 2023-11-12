@@ -2,6 +2,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
+
 --Compile file
 vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua compile_run_cpp()<CR>", { silent = true })
 
@@ -28,5 +29,3 @@ function compile_run_cpp()
 
 	vim.api.nvim_command("startinsert")
 end
-
-

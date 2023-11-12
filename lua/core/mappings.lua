@@ -38,6 +38,9 @@ map({ "n", "x" }, "L", "g_")
 map("n", "<C-q>", ":qa<CR>", { silent = true })
 map("n", "<C-s>", ":w!<CR>", { silent = true })
 
+--Spell
+map("n", "<F10>", "<cmd>set spell!<cr>")
+
 -- Increment/decrement
 map("n", "+", "<C-a>")
 map("n", "-", "<C-x>")
@@ -61,27 +64,21 @@ map("n", "<C-k>", ":wincmd l<CR>", { silent = true }) -- focus left
 map("n", "<C-l>", ":wincmd j<CR>", { silent = true }) -- focus bottom
 map("n", "<C-;>", ":wincmd k<CR>", { silent = true }) -- focus top
 
+-- Change text without putting it into the vim register,
+map("n", "c", '"_c')
+map("n", "C", '"_C')
+map("n", "cc", '"_cc')
+map("x", "c", '"_c')
+
 del("n", "Y")
 
 -- ##################################################
 -- ####			  custom keybindings	         ####
 -- ##################################################
 
-local function move_line(op)
-	return function()
-		local start = op == "+" and 1 or 2
-		local count = vim.v.count
-		local times = count == 0 and start or (op == "+" and count or count + 1)
-		local ok, _ = pcall(vim.cmd.move, op .. times)
-		if ok then
-			vim.cmd.norm("==")
-		end
-	end
-end
-
 --Move Line
-map("n", "<C-m>", move_line("+"), { silent = true })
-map("n", "<S-C-m>", move_line("-"), { silent = true })
+map("n", "<A-j>", u.move_line("+"), { silent = true })
+map("n", "<A-k>", u.move_line("-"), { silent = true })
 
 --Surround
 map("v", "<leader>sa", cb("modules.surround", "add_visual"))
@@ -122,8 +119,8 @@ map("n", "<leader>gpl", ":Git pull<CR>")
 map("n", "<leader>gpu", ":15 split|term git push<CR>")
 map("n", "<leader>gd", ":DiffviewOpen<CR>")
 
-map("n", "<leader>gdc" , function()
- 	for _, view in ipairs(require("diffview.lib").views) do
+map("n", "<leader>gdc", function()
+	for _, view in ipairs(require("diffview.lib").views) do
 		view:close()
-	end 
+	end
 end)

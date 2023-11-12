@@ -1,8 +1,20 @@
 local M = {}
 
 ---Checking if the string in lowercase
----@param str string
 ---@return boolean
+
+function M.move_line(op)
+	return function()
+		local start = op == "+" and 1 or 2
+		local count = vim.v.count
+		local times = count == 0 and start or (op == "+" and count or count + 1)
+		local ok, _ = pcall(vim.cmd.move, op .. times)
+		if ok then
+			vim.cmd.norm("==")
+		end
+	end
+end
+
 
 function M.is_lower(str)
   return str == string.lower(str)
