@@ -1,0 +1,14 @@
+{
+    "workspace.checkThirdParty": false,
+    "diagnostics.globals": [
+        "return",
+        "vim",
+        "fasle"
+    ],
+    "diagnostics.disable": [
+        "redefined-local",
+        "unused-local",
+        "cast-local-type",
+        "unused-function"
+    ]
+}
