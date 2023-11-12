@@ -1,11 +1,16 @@
 return {
-	{
+    {
         "tpope/vim-fugitive",
-        event = {"User InGitRepo"},
-	},
+        event = { "User InGitRepo" },
+    },
 
-	{
-		"rbong/vim-flog",
-        cmd = "Flog"
-	},
+    {
+        "rbong/vim-flog",
+        cmd = "Flog",
+    },
+
+    {
+        "sindrets/diffview.nvim",
+        cmd = "DiffviewOpen",
+    }
 }
