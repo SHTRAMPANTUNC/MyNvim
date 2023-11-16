@@ -70,8 +70,7 @@ return {
 					button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
 					button("r", "  > Projects", ":Telescope projects<CR>"),
 					button("f", "  > Find file", ":cd $HOME/ | Telescope find_files<CR>"),
-					-- button("u", "  > Update plugins", "<cmd>Lazy sync<CR>"),
-					button("c", "  > Settings", ":e $MYVIMRC | :cd %:p:h | wincmd k | :NvimTreeOpen<CR>"),
+					button("s", "  > Settings", ":e $MYVIMRC | :cd %:p:h | wincmd k | :NvimTreeOpen<CR>"),
 					button("q", "󰩈  > Quit NVIM", ":qa<CR>"),
 				},
 				opts = {

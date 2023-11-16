@@ -1,10 +1,28 @@
 vim.cmd("autocmd TermOpen * setlocal norelativenumber nonumber")
 vim.cmd("autocmd TermOpen * startinsert")
 
-vim.cmd("autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen")
-
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+	callback = function()
+		local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
+		if ok and cl then
+			vim.wo.cursorline = true
+			vim.api.nvim_win_del_var(0, "auto-cursorline")
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+	callback = function()
+		local cl = vim.wo.cursorline
+		if cl then
+			vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
+			vim.wo.cursorline = false
+		end
+	end,
+})
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	desc = "Rid auto comment for new string",
@@ -38,13 +56,6 @@ vim.api.nvim_create_autocmd("BufHidden", {
 				pcall(vim.api.nvim_buf_delete, data.buf, {})
 			end)
 		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	desc = "Override messages when buffer is written",
-	callback = function()
-		vim.api.nvim_echo({ { "File has been saved" } }, fasle, {})
 	end,
 })
 

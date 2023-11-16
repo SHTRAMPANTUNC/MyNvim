@@ -1,9 +1,7 @@
 local M = {}
 
-
 -- global config for diagnostic
 vim.diagnostic.config(require("user_settings").lsp.diagnostic)
-
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -25,10 +23,10 @@ local function lsp_keymaps(bufnr)
 	map("n", "gd", ":Lspsaga goto_definition<CR>")
 	map("n", "<leader>ff", ":Lspsaga finder<CR>")
 	map("n", "<leader>ca", ":Lspsaga code_action<CR>")
-	map("n", "<leader>so", ":Lspsaga outline<CR>")
+	map("n", "<leader>o", ":Lspsaga outline<CR>")
 	map("n", "<leader>rn", ":Lspsaga rename<CR>")
 	map("n", "<Leader>f", function()
-		vim.lsp.buf.format({ async = true })
+		vim.lsp.buf.format({ async = true, desc = "Formatting code" })
 	end)
 end
 
@@ -62,10 +60,9 @@ local function diagnostic_hover(bufnr)
 end
 
 
-
 M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
-    diagnostic_hover(bufnr)
+	diagnostic_hover(bufnr)
 end
 
 M.capabilities = cmp_capabilities

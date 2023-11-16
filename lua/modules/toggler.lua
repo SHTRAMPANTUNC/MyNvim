@@ -5,7 +5,7 @@
 -- (if the opposite word longer when current word,
 -- the tail of opposite will be the same case as the last char case of current)
 
-local u = require('core.utils')
+local u = require('utils')
 local M = {}
 
 ---Every key and value should be in lowercase

@@ -1,4 +1,3 @@
-
 local listener_ls = vim.api.nvim_create_namespace('key_listener')
 
 local function toggle_hlsearch(char)

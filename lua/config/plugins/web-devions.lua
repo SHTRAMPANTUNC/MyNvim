@@ -38,9 +38,9 @@ return {
 					name = "ninja",
 				},
 
-				exe = {
-					icon = "",
-					color = "#7d373a",
+				md = {
+					icon = " ",
+					color = "#519BB7",
 					cterm_color = "67",
 					name = "exe",
 				},
@@ -118,7 +118,7 @@ return {
 					name = "Diff",
 				},
 				["go"] = {
-					icon = " ",
+					icon = "",
 					color = "#519aba",
 					cterm_color = "74",
 					name = "Go",

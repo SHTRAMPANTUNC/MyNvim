@@ -18,6 +18,7 @@ return {
 				sources = {
 					formatting.clang_format,
 					formatting.stylua,
+                    diagnostics.tidy
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then

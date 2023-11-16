@@ -1,15 +1,17 @@
 return {
     cmd = {
         "clangd",
-        "--completion-style=detailed",
+        "--clang-tidy",
         "--background-index",
         "--pch-storage=memory",
+        "--fallback-style=llvm",
         "--header-insertion=never",
-        "--log=verbose",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
         "--compile-commands-dir=./build",
     },
     init_options = {
-        usePlaceholders = false,
+        usePlaceholders = true,
         completeUnimported = true,
         clangdFileStatus = true
     },

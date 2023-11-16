@@ -5,6 +5,7 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = { "NvimTreeToggle", "NvimTreeOpen" },
+		enabled = true,
 		config = function()
 			require("nvim-tree").setup({
 				sync_root_with_cwd = true,
@@ -67,12 +68,17 @@ return {
 								arrow_open = "",
 								arrow_closed = "",
 							},
+							git = {
+                                untracked = "",
+								staged = "",
+								deleted = "",
+								unstaged = "󰜀",
+								renamed = "",
+                                ignored = '◌',
+								unmerged = "",
+							},
 						},
 					},
-				},
-				trash = {
-					cmd = "trash",
-					require_confirm = true,
 				},
 				filters = {
 					dotfiles = true,

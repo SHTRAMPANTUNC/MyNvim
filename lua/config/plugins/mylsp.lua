@@ -10,7 +10,7 @@ return {
 			"b0o/schemastore.nvim",
 		},
 		config = function()
-            require("plugins.lsp.config")
+            require("config.lsp.init")
         end,
 	},
 }

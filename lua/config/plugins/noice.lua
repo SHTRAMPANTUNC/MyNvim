@@ -10,6 +10,10 @@ return {
 			},
 			presets = {
 				lsp_doc_border = true,
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+				inc_rename = true,
 			},
 		},
 		dependencies = {
@@ -29,21 +33,6 @@ return {
 				end,
 			},
 		},
-
-		config = function()
-			require("noice").setup({
-				routes = {
-					{
-						filter = {
-							event = "msg_show",
-							kind = "",
-							find = "written",
-						},
-						opts = { skip = true },
-					},
-				},
-			})
-		end,
 	},
 
 	vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = "#dcd7ba" }),

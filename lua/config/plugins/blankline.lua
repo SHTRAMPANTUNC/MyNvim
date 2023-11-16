@@ -5,7 +5,10 @@ return {
 			event = { "BufReadPost", "BufNewFile" },
 			config = function()
 				require("ibl").setup({
-					indent = { char = "▏" },
+					indent = {
+						char = "│",
+						tab_char = "│",
+					},
 					scope = {
 						show_start = false,
 						show_end = false,
@@ -14,15 +17,14 @@ return {
 						filetypes = {
 							"help",
 							"alpha",
-							"dashboard",
 							"NvimTree_1",
-							"neo-tree",
+							"text",
+							"markdown",
+							"gitconfig",
 							"Trouble",
 							"lazy",
 							"mason",
 							"notify",
-							"toggleterm",
-							"lazyterm",
 							"asm",
 						},
 					},
@@ -34,10 +36,10 @@ return {
 		{
 			"echasnovski/mini.indentscope",
 			enabled = true,
-			version = false, -- wait till new 0.7.0 release to put it back on semver
+			version = false,
 			event = { "BufReadPre", "BufNewFile" },
 			opts = {
-				symbol = "▏",
+				symbol = "│",
 				options = { try_as_border = true },
 			},
 			init = function()

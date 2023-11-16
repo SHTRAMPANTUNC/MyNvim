@@ -15,9 +15,8 @@ function M.move_line(op)
 	end
 end
 
-
 function M.is_lower(str)
-  return str == string.lower(str)
+	return str == string.lower(str)
 end
 
 function M.get_object_range()
@@ -45,21 +44,20 @@ local function char_byte_count(s, i)
 	end
 end
 
-
 function M.lazy_rhs_cb(module, cb_name, ...)
-  local args = { ... }
-  return function()
-    if #args == 0 then
-      return require(module)[cb_name]()
-    else
-      return require(module)[cb_name](unpack(args))
-    end
-  end
+	local args = { ... }
+	return function()
+		if #args == 0 then
+			return require(module)[cb_name]()
+		else
+			return require(module)[cb_name](unpack(args))
+		end
+	end
 end
 
 function M.char_on_pos(pos)
-  pos = pos or vim.fn.getpos('.')
-  return tostring(vim.fn.getline(pos[1])):sub(pos[2], pos[2])
+	pos = pos or vim.fn.getpos(".")
+	return tostring(vim.fn.getline(pos[1])):sub(pos[2], pos[2])
 end
 
 function M.get_visual_range()

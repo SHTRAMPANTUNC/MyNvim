@@ -1,14 +1,15 @@
-local u = require("core.utils")
+local u = require("utils")
 local cb = u.lazy_rhs_cb
+
 local map = vim.keymap.set
-local del = vim.keymap.del
+
 vim.g.mapleader = " "
 
 -- ##################################################
 -- ####			  NEOVIM KEYBINDINGS		     ####
 -- ##################################################
 
---X
+--Better X bind
 map("n", "x", '"_x')
 
 --Paste without copy into register
@@ -70,8 +71,6 @@ map("n", "C", '"_C')
 map("n", "cc", '"_cc')
 map("x", "c", '"_c')
 
-del("n", "Y")
-
 -- ##################################################
 -- ####			  custom keybindings	         ####
 -- ##################################################
@@ -105,10 +104,6 @@ map("n", "<leader>b", ":BufferLinePick<CR>", { silent = true })
 --Trouble
 map("n", "<leader>d", ":Trouble<CR>", { silent = true })
 
---CMake
-map("n", "<leader>cg", ":CMakeGenerate<CR>", { silent = true })
-map("n", "<leader>cb", ":CMakeBuild<CR>", { silent = true })
-
 -- ##################################################
 -- ####			  GIT keybindings	             ####
 -- ##################################################
@@ -118,7 +113,6 @@ map("n", "<leader>gs", ":Git<CR>")
 map("n", "<leader>gpl", ":Git pull<CR>")
 map("n", "<leader>gpu", ":15 split|term git push<CR>")
 map("n", "<leader>gd", ":DiffviewOpen<CR>")
-
 map("n", "<leader>gdc", function()
 	for _, view in ipairs(require("diffview.lib").views) do
 		view:close()

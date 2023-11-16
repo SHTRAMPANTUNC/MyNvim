@@ -16,14 +16,13 @@ return {
 		end,
 	},
 },
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function ()
-    vim.cmd([[
+	vim.api.nvim_create_autocmd("ColorScheme", {
+		pattern = "*",
+		callback = function()
+			vim.cmd([[
       hi HopNextKey cterm=bold ctermfg=176 gui=bold  guifg=#748fc7
       hi HopNextKey1 cterm=bold ctermfg=176 gui=bold guifg=#748fc7
       hi HopNextKey2 cterm=bold ctermfg=176 gui=bold guifg=#748fc7
     ]])
-  end
-})
+		end,
+	})

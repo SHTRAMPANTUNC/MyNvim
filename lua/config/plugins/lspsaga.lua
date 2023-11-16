@@ -7,7 +7,6 @@ return {
 			if not status then
 				return
 			end
-
 			saga.setup({
 				ui = {
 					border = "rounded",
@@ -19,13 +18,19 @@ return {
 				},
 				lightbulb = {
 					enable = true,
+					enable_in_insert = false,
 				},
 				outline = {
-					layout = "float",
+					layout = "floar",
 				},
 				diagnostic = {
 					on_insert = false,
 					on_insert_follow = false,
+				},
+				code_bction = {
+					num_shortcut = true,
+					show_server_name = false,
+					extend_gitsigns = true,
 				},
 			})
 		end,
