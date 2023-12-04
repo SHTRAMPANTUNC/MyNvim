@@ -20,7 +20,6 @@ return {
 					"",
 					"",
 					"",
-					"                                                  ",
 					[[                                                                     ]],
 					[[       ████ ██████           █████      ██                     ]],
 					[[      ███████████             █████                             ]],
@@ -93,7 +92,7 @@ return {
 					.. vim.version().minor
 					.. "."
 					.. vim.version().patch
-					.. "   |   "
+					.. "  |  "
 				return plugins_text .. pluginstats() .. "\n"
 			end
 

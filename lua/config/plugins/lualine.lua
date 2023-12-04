@@ -118,7 +118,7 @@ return {
 
 			ins_left({
 				"branch",
-				icon = "",
+				icon = "",
 				color = function()
 					return { bg = "#393947", fg = mode_color[vim.fn.mode()], gui = "bold" }
 				end,
