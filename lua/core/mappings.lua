@@ -108,10 +108,10 @@ map("n", "<leader>d", ":Trouble<CR>", { silent = true })
 -- ####			  GIT keybindings	             ####
 -- ##################################################
 
-map("n", "<leader>gc", ":Flog<CR>")
-map("n", "<leader>gs", ":Git<CR>")
-map("n", "<leader>gpl", ":Git pull<CR>")
-map("n", "<leader>gpu", ":15 split|term git push<CR>")
+map("n", "<leader>gc", ":Flog<CR>", { silent = true })
+map("n", "<leader>gs", ":Git<CR>", { silent = true })
+map("n", "<leader>gpl", ":Git pull<CR>", { silent = true })
+map("n", "<leader>gpu", ":15 split|term git push<CR>", { silent = true })
 map("n", "<leader>gd", ":DiffviewOpen<CR>")
 map("n", "<leader>gdc", function()
 	for _, view in ipairs(require("diffview.lib").views) do

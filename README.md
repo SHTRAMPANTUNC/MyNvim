@@ -3,6 +3,7 @@
 Personal config for C++ Development
 
 ![nvim screenshot](./images/nvim-dashboard.png)
+
 ![nvim screenshot](./images/nvim-exampleCode.png)
 
 ## Requirements
@@ -23,12 +24,7 @@ Personal config for C++ Development
 
 ### Clone repository
 
-```text
-git clone https://github.com/SHTRAMPANTUNC/MyNvim
-```
 
-### Move Files
-
-```text
-mv MyNvim/* ~/.config/nvim
-```
+```bash
+$ git clone https://github.com/Wansmer/nvim-config ~/.config/nvim
+$ nvim

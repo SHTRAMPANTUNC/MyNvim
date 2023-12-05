@@ -6,24 +6,21 @@ return {
 	},
 
 	{
-		"numToStr/Comment.nvim",
+		"echasnovski/mini.comment",
 		event = { "BufReadPost", "BufNewFile" },
-		dependencies = "folke/todo-comments.nvim",
-		config = function()
-			require("Comment").setup({
-				toggler = {
-					---Line-comment toggle keymap
-					line = "<C-x>",
-					---Block-comment toggle keymap
-					block = "gcc",
-				},
-				mappings = {
-					basic = true,
-					extra = true,
-				},
-				pre_hook = nil,
-				post_hook = nil,
-			})
-		end,
+		dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+		opts = {
+			mappings = {
+				comment_line = "<C-x>",
+				comment_visual = "<C-x>",
+			},
+
+			options = {
+				custom_commentstring = function()
+					return require("ts_context_commentstring.internal").calculate_commentstring()
+						or vim.bo.commentstring
+				end,
+			},
+		},
 	},
 }
