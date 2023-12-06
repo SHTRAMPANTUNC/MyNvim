@@ -26,5 +26,5 @@ Personal config for C++ Development
 
 
 ```bash
-$ git clone https://github.com/Wansmer/nvim-config ~/.config/nvim
+$ git https://github.com/SHTRAMPANTUNC/MyNvim ~/.config/nvim
 $ nvim
