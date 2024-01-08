@@ -81,7 +81,7 @@ return {
 			local function pluginstats()
 				local stats = require("lazy").stats()
 				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-				return " " .. stats.count .. " plugins"
+				return "  " .. stats.count .. " plugins"
 			end
 
 			local function stats()

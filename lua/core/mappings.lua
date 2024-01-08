@@ -107,6 +107,22 @@ map("n", "<leader>d", ":Trouble<CR>", { silent = true })
 -- ##################################################
 -- ####			  GIT keybindings	             ####
 -- ##################################################
+map({ "n", "v" }, "<leader>gl", function()
+	local mode = string.lower(vim.fn.mode())
+	require("gitlinker").get_buf_range_url(mode)
+end, {
+	silent = true,
+	desc = "get git permlink",
+})
+
+map("n", "<leader>gb", function()
+	require("gitlinker").get_repo_url({
+		action_callback = require("gitlinker").actions.open_in_browser,
+	})
+end, {
+	silent = true,
+	desc = "browse repo in browser",
+})
 
 map("n", "<leader>gc", ":Flog<CR>", { silent = true })
 map("n", "<leader>gs", ":Git<CR>", { silent = true })

@@ -6,28 +6,13 @@ return {
 			config = function()
 				require("ibl").setup({
 					indent = {
-						char = "│",
-						tab_char = "│",
+						char = "▏",
 					},
 					scope = {
 						show_start = false,
 						show_end = false,
 					},
-					exclude = {
-						filetypes = {
-							"help",
-							"alpha",
-							"NvimTree_1",
-							"text",
-							"markdown",
-							"gitconfig",
-							"Trouble",
-							"lazy",
-							"mason",
-							"notify",
-							"asm",
-						},
-					},
+					exclude = exclude_ft
 				})
 			end,
 			main = "ibl",
@@ -39,7 +24,7 @@ return {
 			version = false,
 			event = { "BufReadPre", "BufNewFile" },
 			opts = {
-				symbol = "│",
+				symbol = "▏",
 				options = { try_as_border = true },
 			},
 			init = function()

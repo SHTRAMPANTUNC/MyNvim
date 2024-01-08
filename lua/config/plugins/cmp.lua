@@ -8,6 +8,7 @@ return {
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"saadparwaiz1/cmp_luasnip",
+				"hrsh7th/cmp-nvim-lsp-signature-help",
 				"rafamadriz/friendly-snippets",
 				"L3MON4D3/LuaSnip",
 				"hrsh7th/cmp-nvim-lsp",
@@ -57,6 +58,19 @@ return {
 				},
 			})
 
+			local function border(hl_name)
+				return {
+					{ "╭", hl_name },
+					{ "─", hl_name },
+					{ "╮", hl_name },
+					{ "│", hl_name },
+					{ "╯", hl_name },
+					{ "─", hl_name },
+					{ "╰", hl_name },
+					{ "│", hl_name },
+				}
+			end
+
 			require("luasnip.loaders.from_vscode").lazy_load()
 			cmp.setup({
 				preselect = "None",
@@ -67,13 +81,18 @@ return {
 				},
 
 				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
+					completion = {
+						border = border("CmpDocBorder"),
+						winhighlight = "Normal:CmpPmenu,Search:None",
+						scrollbar = false,
+					},
+					documentation = {
+						border = border("CmpDocBorder"),
+						winhighlight = "Normal:CmpDoc",
+					},
 				},
 
 				mapping = cmp.mapping.preset.insert({
-					["<C-k>"] = cmp.mapping.select_prev_item(),
-					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
@@ -96,14 +115,51 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "luasnip", max_item_count = 5, group_index = 1 },
-					{ name = "nvim_lsp", max_item_count = 20, group_index = 1 },
-					{ name = "path", group_index = 2 },
-					{ name = "buffer", keyword_length = 2, max_item_count = 5, group_index = 2 },
+					{ name = "nvim_lsp_signature_help" },
+					{ name = "nvim_lsp", max_item_count = 15, group_index = 1 },
+					{
+						name = "path",
+						group_index = 2,
+						trigger_characters = { "/", "~", "./", "../"},
+					},
+					{
+						name = "buffer",
+						option = {
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs()
+							end,
+						},
+						keyword_length = 2,
+						max_item_count = 5,
+						group_index = 2,
+					},
 				}),
+				completion = {
+					keyword_length = 1,
+					completeopt = "menu,noselect",
+				},
+
+				view = {
+					entries = "custom",
+				},
 
 				formatting = {
+					fields = {
+						"kind",
+						"abbr",
+					},
 					format = lspkind.cmp_format({
 						maxwidth = 50,
+						mode = "symbol",
+						menu = {
+							nvim_lsp = "[LSP]",
+							ultisnips = "[US]",
+							nvim_lua = "[Lua]",
+							path = "[Path]",
+							buffer = "[Buffer]",
+							emoji = "[Emoji]",
+							omni = "[Omni]",
+						},
 					}),
 				},
 			})

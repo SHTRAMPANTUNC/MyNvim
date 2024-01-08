@@ -5,7 +5,7 @@ return {
 		opts = {
 			lsp = {
 				signature = {
-					enabled = true,
+					enabled = false,
 				},
 			},
 			presets = {

@@ -3,24 +3,23 @@ local user = require("user_settings")
 local textwidth = user.PREF.common.textwidth
 local tabwidth = user.PREF.common.tabwidth
 
-
 local options = {
 	-- ===============================
 	-- Other
 	-- ===============================
 	title = true,
-    smoothscroll = true,
+	smoothscroll = true,
 	backup = false,
 	shell = "/bin/fish",
 	backupskip = { "/tmp/*", "/private/tmp/*" },
 	inccommand = "split",
 	wrap = false,
 	backspace = { "start", "eol", "indent" },
-	clipboard = 'unnamedplus',
+	clipboard = "unnamedplus",
 	path = vim.opt.path:append({ "**" }),
 	wildignore = vim.opt.wildignore:append({ "*/node_modules/*" }),
-	completeopt = "menu,menuone,noselect",
 	swapfile = false,
+	smoothscroll = true,
 	spell = fasle,
 	spelllang = "en_us,ru_ru",
 	mouse = "",
@@ -46,11 +45,9 @@ local options = {
 	-- ===============================
 	-- Indent&Tabs
 	-- ===============================
-	autoindent = true,
-	smartindent = true,
 	expandtab = true,
+	cindent = true,
 	smarttab = true,
-	breakindent = true,
 	shiftwidth = tabwidth,
 	tabstop = tabwidth,
 
@@ -58,7 +55,7 @@ local options = {
 	-- UI
 	-- ===============================
 	cursorline = true,
-    colorcolumn = tostring(textwidth),
+	colorcolumn = tostring(textwidth),
 	signcolumn = "yes",
 	laststatus = 3,
 	showcmd = fasle,
@@ -71,8 +68,6 @@ local options = {
 	pumheight = 15,
 	wildoptions = "pum",
 	pumblend = 5,
-	background = "dark",
-
 }
 
 for option_name, value in pairs(options) do

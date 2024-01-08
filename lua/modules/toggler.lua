@@ -25,7 +25,7 @@ local opposites = vim.tbl_add_reverse_lookup({
   ['const'] = 'let',
   ['open'] = 'close',
   ['global'] = 'local',
-  -- TODO: below is not working. Need fix
+  --  TODO: below is not working. Need fix
   ['!='] = '==',
   ['!=='] = '===',
   ['<'] = '>',
