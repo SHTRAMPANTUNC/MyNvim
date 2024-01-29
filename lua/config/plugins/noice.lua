@@ -2,6 +2,7 @@ return {
 	{
 		"folke/noice.nvim",
 		event = "VimEnter",
+        enabled = true,
 		opts = {
 			lsp = {
 				signature = {

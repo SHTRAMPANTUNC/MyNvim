@@ -93,7 +93,12 @@ map("n", "<Leader>t", cb("modules.toggler", "toggle_word"), { desc = "Module Tog
 -- ##################################################
 
 --Tree
-map("n", "<C-n>", ":NvimTreeToggle<CR>", { silent = true })
+map("n", "<C-n>",":NvimTreeToggle<CR>",{ silent = true })
+
+--Fzf
+map("n", ";f" ,":Files<CR>", { silent = true })
+map("n", ";r" ,":Rg<CR>", { silent = true })
+map("n", ";c" ,":Lines<CR>", { silent = true })
 
 --Tabs
 map("n", "<Tab>", ":BufferLineCycleNext<CR>", { silent = true })

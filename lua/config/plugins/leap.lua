@@ -1,9 +1,12 @@
 return {
 	{
-		"ggandor/leap.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("leap").add_default_mappings(true)
-		end,
+		{
+			"folke/flash.nvim",
+			opts = {},
+            keys = {
+                { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+                { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            },
+		},
 	},
 }

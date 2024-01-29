@@ -77,8 +77,8 @@ return {
 			local mode_color = {
 				n = colors.blue,
 				i = colors.green,
-				v = colors.cyan,
-				[""] = colors.cyan,
+				v = colors.red,
+				[""] = colors.red,
 				V = colors.blue,
 				c = colors.yellow,
 				no = colors.red,

@@ -12,7 +12,7 @@ for _, server in ipairs(servers) do
 end
 
 lsp.clangd.setup({
-		capabilities = capabilities,
+	    capabilities = capabilities,
 		on_attach = on_attach,
 		cmd = require("config.lsp.settings.clangd").cmd,
 })
@@ -29,14 +29,8 @@ lsp.jsonls.setup({
 		settings = require("config.lsp.settings.jsonls").settings,
 })
 
-lsp.ltex.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		settings = require("config.lsp.settings.ltex").settings,
-}
-
-)lsp.gopls.setup({
+--[[ lsp.gopls.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
 		settings = require("config.lsp.settings.gopls").settings,
-})
+}) ]]

@@ -11,7 +11,6 @@ return {
 					"lua",
 					"json",
 					"cmake",
-                    "python",
 				},
 				ignore_install = {},
 				highlight = {

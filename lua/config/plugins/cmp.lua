@@ -145,21 +145,12 @@ return {
 
 				formatting = {
 					fields = {
-						"kind",
 						"abbr",
+						"kind",
 					},
 					format = lspkind.cmp_format({
 						maxwidth = 50,
-						mode = "symbol",
-						menu = {
-							nvim_lsp = "[LSP]",
-							ultisnips = "[US]",
-							nvim_lua = "[Lua]",
-							path = "[Path]",
-							buffer = "[Buffer]",
-							emoji = "[Emoji]",
-							omni = "[Omni]",
-						},
+						mode = "text",
 					}),
 				},
 			})

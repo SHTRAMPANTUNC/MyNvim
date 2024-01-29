@@ -8,9 +8,7 @@ local options = {
 	-- Other
 	-- ===============================
 	title = true,
-	smoothscroll = true,
 	backup = false,
-	shell = "/bin/fish",
 	backupskip = { "/tmp/*", "/private/tmp/*" },
 	inccommand = "split",
 	wrap = false,

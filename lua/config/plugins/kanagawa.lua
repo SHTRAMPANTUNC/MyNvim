@@ -41,6 +41,7 @@ return {
 						DiagnosticSignInfo = { bg = "none" },
 
 						NvimTreeFolderIcon = { fg = "#de9860" },
+						NvimTreeIndentMarker = { fg = "#54546d" },
 					}
 				end,
 			})
