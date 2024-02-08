@@ -9,6 +9,7 @@ return {
 					"c",
 					"cpp",
 					"lua",
+                    "nix",
 					"json",
 					"cmake",
 				},

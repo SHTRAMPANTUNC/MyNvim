@@ -7,18 +7,15 @@ return {
 			local lualine = require("lualine")
 
 			local colors = {
-				bg = "#202328",
-				fg = "#bbc2cf",
-				yellow = "#ECBE7B",
-				cyan = "#538EA8",
-				darkblue = "#081633",
-				green = "#98be65",
-				orange = "#FF8800",
-				violet = "#917bb3",
-				magenta = "#c678dd",
-				blue = "#748fc7",
-				red = "#ec5f67",
-				white = "#a8afbc",
+				bg = "#1e1e2d",
+				fg = "#cdd6f4",
+				yellow = "#f9e2af",
+				green = "#a6e3a1",
+				violet = "#b4befe",
+				magenta = "#cba6f7",
+				blue = "#89b4fa",
+				red = "#f38ba8",
+				white = "#b3bbd7",
 			}
 
 			local conditions = {
@@ -120,7 +117,7 @@ return {
 				"branch",
 				icon = "",
 				color = function()
-					return { bg = "#393947", fg = mode_color[vim.fn.mode()], gui = "bold" }
+					return { bg = "#313244", fg = mode_color[vim.fn.mode()], gui = "bold" }
 				end,
 				padding = { right = 1, left = 1 },
 			})
@@ -129,7 +126,7 @@ return {
 				"diff",
 				symbols = { added = " ", modified = "󱓻 ", removed = " " },
 				color = function()
-					return { bg = "#393947", gui = "bold" }
+					return { bg = "#313244", gui = "bold" }
 				end,
 				cond = conditions.hide_in_width,
 			})

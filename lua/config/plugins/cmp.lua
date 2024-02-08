@@ -27,11 +27,11 @@ return {
 
 				symbol_map = {
 					Text = "󰦨 ",
-					Method = " ",
-					Function = " ",
+					Method = " ",
+					Function = " ",
 					Constructor = " ",
 					Field = " ",
-					Variable = " ",
+					Variable = " ",
 					Class = " ",
 					Interface = " ",
 					Module = " ",
@@ -39,7 +39,7 @@ return {
 					Unit = " ",
 					Value = "󰾡 ",
 					Enum = " ",
-					Keyword = " ",
+					Keyword = "  ",
 					Snippet = " ",
 					Color = " ",
 					File = " ",
@@ -47,12 +47,12 @@ return {
 					Folder = " ",
 					EnumMember = " ",
 					Constant = " ",
-					Struct = " ",
+					Struct = "  ",
 					Event = " ",
 					Operator = " ",
 					TypeParameter = " ",
 					Specifier = " ",
-					Statement = "",
+					Statement = " ",
 					Recovery = " ",
 					TranslationUnit = " ",
 				},
@@ -114,13 +114,13 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "luasnip", max_item_count = 5, group_index = 1 },
+					{ name = "luasnip", group_index = 1 },
+					{ name = "nvim_lsp", max_item_count = 35, group_index = 1 },
 					{ name = "nvim_lsp_signature_help" },
-					{ name = "nvim_lsp", max_item_count = 15, group_index = 1 },
 					{
 						name = "path",
 						group_index = 2,
-						trigger_characters = { "/", "~", "./", "../"},
+						trigger_characters = { "/", "~", "./", "../" },
 					},
 					{
 						name = "buffer",
@@ -150,11 +150,10 @@ return {
 					},
 					format = lspkind.cmp_format({
 						maxwidth = 50,
-						mode = "text",
+						mode = "symbol_text",
 					}),
 				},
 			})
-
 			experimental = {
 				ghost_text = false,
 			}

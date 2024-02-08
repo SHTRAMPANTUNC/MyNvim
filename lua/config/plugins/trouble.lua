@@ -2,7 +2,7 @@ return {
 	{
 		"folke/trouble.nvim",
 		event = "LspAttach",
-        enabled = false,
+        enabled = true,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("trouble").setup({

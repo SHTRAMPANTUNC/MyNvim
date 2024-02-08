@@ -1,51 +1,40 @@
 return {
 	{
-		"rebelot/kanagawa.nvim",
-		priority = 1000,
+		"catppuccin/nvim",
 		lazy = false,
-		build = ":KanagawaCompile",
 
 		config = function()
-			require("kanagawa").setup({
-				compile = true,
-				undercurl = true,
-				commentStyle = { italic = true },
-				functionStyle = { bold = true },
-				keywordStyle = { italic = true },
-				statementStyle = { bold = true },
-				typeStyle = {},
-				transparent = false,
-				dimInactive = false,
-				terminalColors = true,
-				theme = "wave", -- or dragon
-				background = "wawe",
-
-				overrides = function(colors)
-					return {
-						LineNr = { bg = "none" },
-						Visual = { bg = "#363647" },
-						signcolumn = { bg = "none" },
-
-						NormalFloat = { bg = "none" },
-						FloatBorder = { bg = "none" },
-						FloatTitle = { bg = "none" },
-
-						GitSignsAdd = { bg = "none" },
-						GitSignsDelete = { bg = "none" },
-						GitSignsChange = { bg = "none" },
-						GitSignsChanged = { bg = "none" },
-
-						DiagnosticSignError = { bg = "none" },
-						DiagnosticSignWarn = { bg = "none" },
-						DiagnosticSignHint = { bg = "none" },
-						DiagnosticSignInfo = { bg = "none" },
-
+			require("catppuccin").setup({
+				flavour = "mocha",
+				no_underline = true,
+				styles = {
+					comments = { "italic" },
+					conditionals = { "italic" },
+					functions = { "bold" },
+					keywords = { "italic" },
+				},
+				color_overrides = {
+					mocha = {
+						base = "#181825",
+					},
+				},
+				highlight_overrides = {
+					all = {
 						NvimTreeFolderIcon = { fg = "#de9860" },
-						NvimTreeIndentMarker = { fg = "#54546d" },
-					}
-				end,
+						NormalFloat = { bg = "none" },
+					},
+				},
+				integrations = {
+					cmp = true,
+					alpha = true,
+					flash = true,
+					gitsigns = true,
+					nvimtree = true,
+					treesitter = true,
+					notify = true,
+				},
 			})
-			vim.cmd("colorscheme kanagawa")
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 }

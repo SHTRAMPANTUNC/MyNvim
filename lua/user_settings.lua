@@ -19,9 +19,9 @@ M.lsp = {
 		"cmake",
 		"lua_ls",
 		"jsonls",
-		-- "dockerls",
+		"dockerls",
         "nil_ls",
-        -- "gopls"
+        "gopls"
 	},
 }
 

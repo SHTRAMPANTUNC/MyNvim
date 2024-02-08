@@ -29,8 +29,8 @@ lsp.jsonls.setup({
 		settings = require("config.lsp.settings.jsonls").settings,
 })
 
---[[ lsp.gopls.setup({
+lsp.gopls.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
 		settings = require("config.lsp.settings.gopls").settings,
-}) ]]
+})
