@@ -5,7 +5,7 @@ return {
 			require("nvim-web-devicons").set_icon({
 				cpp = {
 					icon = "󰙲 ",
-					color = "#984c93",
+					color = "#a074c4",
 					cterm_color = "65",
 					name = "Cpp",
 				},

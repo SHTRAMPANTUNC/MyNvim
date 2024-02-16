@@ -8,7 +8,7 @@ return {
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"saadparwaiz1/cmp_luasnip",
-				"hrsh7th/cmp-nvim-lsp-signature-help",
+				-- "hrsh7th/cmp-nvim-lsp-signature-help",
 				"rafamadriz/friendly-snippets",
 				"L3MON4D3/LuaSnip",
 				"hrsh7th/cmp-nvim-lsp",
@@ -86,10 +86,11 @@ return {
 						winhighlight = "Normal:CmpPmenu,Search:None",
 						scrollbar = false,
 					},
-					documentation = {
+                    documentation = cmp.config.disable
+					--[[ documentation = {
 						border = border("CmpDocBorder"),
 						winhighlight = "Normal:CmpDoc",
-					},
+					}, ]]
 				},
 
 				mapping = cmp.mapping.preset.insert({
@@ -116,7 +117,7 @@ return {
 				sources = cmp.config.sources({
 					{ name = "luasnip", group_index = 1 },
 					{ name = "nvim_lsp", max_item_count = 35, group_index = 1 },
-					{ name = "nvim_lsp_signature_help" },
+					-- { name = "nvim_lsp_signature_help" },
 					{
 						name = "path",
 						group_index = 2,
@@ -136,7 +137,7 @@ return {
 				}),
 				completion = {
 					keyword_length = 1,
-					completeopt = "menu,noselect",
+					completeopt = "menu,menuone,noinsert",
 				},
 
 				view = {
