@@ -15,6 +15,6 @@ return {
         completeUnimported = true,
         clangdFileStatus = true
     },
-    filetypes = { "c", "cpp", "h", "hpp" },
+    filetypes = { "c", "cpp", "h" },
     init_option = { fallbackFlags = { "-std=c++17" } },
 }

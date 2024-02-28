@@ -21,7 +21,7 @@ M.lsp = {
 		"jsonls",
 		"dockerls",
         "nil_ls",
-        "gopls"
+        "gopls",
 	},
 }
 

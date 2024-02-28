@@ -4,6 +4,8 @@ return {
 		lazy = false,
 
 		config = function()
+			local mocha = require("catppuccin.palettes").get_palette("mocha")
+
 			require("catppuccin").setup({
 				flavour = "mocha",
 				no_underline = true,
@@ -19,9 +21,17 @@ return {
 					},
 				},
 				highlight_overrides = {
-					all = {
-						NvimTreeFolderIcon = { fg = "#de9860" },
+					mocha = {
 						NormalFloat = { bg = "none" },
+
+						NvimTreeFolderIcon = { fg = mocha.peach },
+						NvimTreeGitStagedIcon = { fg = mocha.green },
+						NvimTreeGitNewIcon = { fg = mocha.green },
+
+						["@keyword.import.cpp"] = { fg = mocha.red },
+						["@namespace"] = { fg = mocha.yellow },
+						["@string.cmake"] = { fg = mocha.red },
+						["@constant.cmake"] = { fg = mocha.green },
 					},
 				},
 				integrations = {
@@ -30,6 +40,7 @@ return {
 					flash = true,
 					gitsigns = true,
 					nvimtree = true,
+					lsp_saga = true,
 					treesitter = true,
 					notify = true,
 				},
