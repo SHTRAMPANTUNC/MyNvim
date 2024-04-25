@@ -1,6 +1,19 @@
+local autocmd = vim.api.nvim_create_autocmd
+local groupid = vim.api.nvim_create_augroup
+
+---@param group string
+---@vararg { [1]: string|string[], [2]: vim.api.keyset.create_autocmd }
+---@return nil
+local function augroup(group, ...)
+  local id = groupid(group, {})
+  for _, a in ipairs({ ... }) do
+    a[2].group = id
+    autocmd(unpack(a))
+  end
+end
+
 vim.cmd("autocmd TermOpen * setlocal norelativenumber nonumber")
 vim.cmd("autocmd TermOpen * startinsert")
-
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
@@ -95,4 +108,57 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			end
 		end
 	end,
+})
+
+augroup('AutoCwd', {
+  { 'BufWinEnter', 'FileChangedShellPost' },
+  {
+    pattern = '*',
+    desc = 'Automatically change local current directory.',
+    callback = function(info)
+      if info.file == '' or vim.bo[info.buf].bt ~= '' then
+        return
+      end
+      local buf = info.buf
+      local win = vim.api.nvim_get_current_win()
+
+      vim.schedule(function()
+        if
+          not vim.api.nvim_buf_is_valid(buf)
+          or not vim.api.nvim_win_is_valid(win)
+          or not vim.api.nvim_win_get_buf(win) == buf
+        then
+          return
+        end
+        vim.api.nvim_win_call(win, function()
+          local current_dir = vim.fn.getcwd(0)
+          local target_dir = require('utils').proj_dir(info.file)
+            or vim.fs.dirname(info.file)
+          local stat = target_dir and vim.uv.fs_stat(target_dir)
+          if
+            stat
+            and stat.type == 'directory'
+            and current_dir ~= target_dir
+          then
+            pcall(vim.cmd.lcd, target_dir)
+          end
+        end)
+      end)
+    end,
+  },
+})
+
+augroup('Autosave', {
+  { 'BufLeave', 'WinLeave', 'FocusLost' },
+  {
+    nested = true,
+    desc = 'Autosave on focus change.',
+    callback = function(info)
+      if vim.bo[info.buf].bt == '' then
+        vim.cmd.update({
+          mods = { emsg_silent = true },
+        })
+      end
+    end,
+  },
 })

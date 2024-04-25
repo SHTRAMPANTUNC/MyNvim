@@ -12,9 +12,6 @@ vim.g.mapleader = " "
 --Better X bind
 map("n", "x", '"_x')
 
--- Save key strokes
--- map({ "n", "x" }, ";", ":")
-
 -- Turn the word under cursor to upper case
 -- map("i", "<c-u>", "<Esc>viwUea")
 

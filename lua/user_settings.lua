@@ -1,7 +1,7 @@
 PREF = {
     common = {
         textwidth = 130,
-        tabwidth = 4,
+        tabwidth = 2,
     },
 
     lsp = {
@@ -23,7 +23,7 @@ PREF = {
     },
 
     plugins = { -- <--- enable/disable optional plugins
-        mason = false,
+        mason = false, -- disable for NixOS
         wakatime = false,
         markdown_preview = false,
         zen_mode = true,
@@ -32,9 +32,9 @@ PREF = {
     ui = {
         signs = {
             Error = "🤮",
-            Warn = "🤢",
-            Hint = "🤯",
-            Info = "🤓",
+            Warn  = "🤢",
+            Hint  = "🤯",
+            Info  = "🤓",
         },
         colorscheme = "catppuccin",
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },

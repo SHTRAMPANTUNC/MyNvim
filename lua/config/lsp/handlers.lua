@@ -9,17 +9,11 @@ for type, icon in pairs(PREF.ui.signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local cmp_capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-
-cmp_capabilities.textDocument.semanticHighlighting = true
-cmp_capabilities.offsetEncoding = "utf-8"
-cmp_capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
+M.capabilities = {
+    require("cmp_nvim_lsp").default_capabilities(),
 }
 
-local function lsp_keymaps(bufnr)
+M.on_attach = function(client, bufnr)
     local map = function(mode, key, action)
         vim.keymap.set(mode, key, action, { buffer = bufnr, silent = true, noremap = true })
     end
@@ -30,12 +24,11 @@ local function lsp_keymaps(bufnr)
     map("n", "<leader>ca", ":Lspsaga code_action<CR>")
     map("n", "<leader>o", ":Lspsaga outline<CR>")
     map("n", "<leader>rn", ":Lspsaga rename<CR>")
-    map("n", "<Leader>f", function()
-        vim.lsp.buf.format({ async = true, desc = "Formatting code" })
-    end)
-end
 
-local function diagnostic_hover(bufnr)
+    if client.server_capabilities.documentFormattingProvider then
+        map("n", "<space>f", vim.lsp.buf.format, { desc = "format code" })
+    end
+
     vim.api.nvim_create_autocmd("CursorHold", {
         buffer = bufnr,
         callback = function()
@@ -63,12 +56,5 @@ local function diagnostic_hover(bufnr)
         end,
     })
 end
-
-M.on_attach = function(client, bufnr)
-    lsp_keymaps(bufnr)
-    diagnostic_hover(bufnr)
-end
-
-M.capabilities = cmp_capabilities
 
 return M
