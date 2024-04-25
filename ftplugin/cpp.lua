@@ -9,7 +9,7 @@ vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua compile_run_cpp()<CR>", { silent 
 function compile_run_cpp()
 	local src_path = vim.fn.expand("%:p:~")
 	local src_noext = vim.fn.expand("%:p:~:r")
-	local _flag = "-Wall -Wextra -std=c++17 -O2"
+	local _flag = "-std=c++20 -O2"
 
 	local prog = ""
 	if vim.fn.executable("clang++") == 1 then
@@ -21,8 +21,8 @@ function compile_run_cpp()
 		return
 	end
 
-	vim.api.nvim_command("botright 15new")
-	vim.api.nvim_command("resize " .. 15)
+	vim.api.nvim_command("botright 10new")
+	vim.api.nvim_command("resize " .. 10)
 
 	local command = string.format("term %s %s %s -o %s && %s", prog, _flag, src_path, src_noext, src_noext)
 	vim.api.nvim_command(command)

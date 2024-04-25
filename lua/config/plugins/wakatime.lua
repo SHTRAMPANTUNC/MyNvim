@@ -1,7 +1,7 @@
 return {
 	{
 		"wakatime/vim-wakatime",
-        enabled = false,
+        enabled = PREF.plugins.wakatime,
 		event = { "BufReadPost" },
 	},
 }

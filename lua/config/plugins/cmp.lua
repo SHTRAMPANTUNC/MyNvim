@@ -8,7 +8,6 @@ return {
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"saadparwaiz1/cmp_luasnip",
-				"hrsh7th/cmp-nvim-lsp-signature-help",
 				"rafamadriz/friendly-snippets",
 				"L3MON4D3/LuaSnip",
 				"hrsh7th/cmp-nvim-lsp",
@@ -27,11 +26,11 @@ return {
 
 				symbol_map = {
 					Text = "󰦨 ",
-					Method = " ",
-					Function = " ",
+					Method = " ",
+					Function = " ",
 					Constructor = " ",
 					Field = " ",
-					Variable = " ",
+					Variable = " ",
 					Class = " ",
 					Interface = " ",
 					Module = " ",
@@ -39,7 +38,7 @@ return {
 					Unit = " ",
 					Value = "󰾡 ",
 					Enum = " ",
-					Keyword = " ",
+					Keyword = "  ",
 					Snippet = " ",
 					Color = " ",
 					File = " ",
@@ -47,12 +46,12 @@ return {
 					Folder = " ",
 					EnumMember = " ",
 					Constant = " ",
-					Struct = " ",
+					Struct = "  ",
 					Event = " ",
 					Operator = " ",
 					TypeParameter = " ",
 					Specifier = " ",
-					Statement = "",
+					Statement = " ",
 					Recovery = " ",
 					TranslationUnit = " ",
 				},
@@ -86,10 +85,11 @@ return {
 						winhighlight = "Normal:CmpPmenu,Search:None",
 						scrollbar = false,
 					},
-					documentation = {
+                    documentation = cmp.config.disable
+					--[[ documentation = {
 						border = border("CmpDocBorder"),
 						winhighlight = "Normal:CmpDoc",
-					},
+					}, ]]
 				},
 
 				mapping = cmp.mapping.preset.insert({
@@ -114,13 +114,13 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "luasnip", max_item_count = 5, group_index = 1 },
-					{ name = "nvim_lsp_signature_help" },
-					{ name = "nvim_lsp", max_item_count = 15, group_index = 1 },
+					{ name = "luasnip", group_index = 1 },
+					{ name = "nvim_lsp", max_item_count = 35, group_index = 1 },
+					-- { name = "nvim_lsp_signature_help" },
 					{
 						name = "path",
 						group_index = 2,
-						trigger_characters = { "/", "~", "./", "../"},
+						trigger_characters = { "/", "./", "../" },
 					},
 					{
 						name = "buffer",
@@ -136,7 +136,7 @@ return {
 				}),
 				completion = {
 					keyword_length = 1,
-					completeopt = "menu,noselect",
+					completeopt = "menu,menuone,noinsert",
 				},
 
 				view = {
@@ -145,25 +145,15 @@ return {
 
 				formatting = {
 					fields = {
-						"kind",
 						"abbr",
+						"kind",
 					},
 					format = lspkind.cmp_format({
 						maxwidth = 50,
-						mode = "symbol",
-						menu = {
-							nvim_lsp = "[LSP]",
-							ultisnips = "[US]",
-							nvim_lua = "[Lua]",
-							path = "[Path]",
-							buffer = "[Buffer]",
-							emoji = "[Emoji]",
-							omni = "[Omni]",
-						},
+						mode = "symbol_text",
 					}),
 				},
 			})
-
 			experimental = {
 				ghost_text = false,
 			}

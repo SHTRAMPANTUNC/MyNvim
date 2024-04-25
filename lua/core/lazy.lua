@@ -20,10 +20,10 @@ require("lazy").setup(configs, {
 		lazy = true,
 	},
 	install = {
-		colorscheme = { "kanagawa" },
+		colorscheme = { PREF.ui.colorscheme },
 	},
 	ui = {
-		border = "rounded",
+		border = PREF.ui.border,
 		title = "Plugin Manager",
 		title_pos = "center",
 		icons = {

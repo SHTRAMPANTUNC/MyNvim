@@ -12,6 +12,12 @@ vim.g.mapleader = " "
 --Better X bind
 map("n", "x", '"_x')
 
+-- Save key strokes
+-- map({ "n", "x" }, ";", ":")
+
+-- Turn the word under cursor to upper case
+-- map("i", "<c-u>", "<Esc>viwUea")
+
 --Paste without copy into register
 map("x", "p", '"_c<Esc>p')
 
@@ -20,12 +26,12 @@ map("n", "q", "<Cmd>close<CR>")
 
 --Move cursor down (display and real line)
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", {
-	expr = true,
+    expr = true,
 })
 
 --Move cursor up (display and real line)
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", {
-	expr = true,
+    expr = true,
 })
 
 -- Change current working directory locally and print cwd after that,
@@ -108,20 +114,20 @@ map("n", "<leader>d", ":Trouble<CR>", { silent = true })
 -- ####			  GIT keybindings	             ####
 -- ##################################################
 map({ "n", "v" }, "<leader>gl", function()
-	local mode = string.lower(vim.fn.mode())
-	require("gitlinker").get_buf_range_url(mode)
+    local mode = string.lower(vim.fn.mode())
+    require("gitlinker").get_buf_range_url(mode)
 end, {
-	silent = true,
-	desc = "get git permlink",
+    silent = true,
+    desc = "get git permlink",
 })
 
 map("n", "<leader>gb", function()
-	require("gitlinker").get_repo_url({
-		action_callback = require("gitlinker").actions.open_in_browser,
-	})
+    require("gitlinker").get_repo_url({
+        action_callback = require("gitlinker").actions.open_in_browser,
+    })
 end, {
-	silent = true,
-	desc = "browse repo in browser",
+    silent = true,
+    desc = "browse repo in browser",
 })
 
 map("n", "<leader>gc", ":Flog<CR>", { silent = true })
@@ -130,7 +136,7 @@ map("n", "<leader>gpl", ":Git pull<CR>", { silent = true })
 map("n", "<leader>gpu", ":15 split|term git push<CR>", { silent = true })
 map("n", "<leader>gd", ":DiffviewOpen<CR>")
 map("n", "<leader>gdc", function()
-	for _, view in ipairs(require("diffview.lib").views) do
-		view:close()
-	end
+    for _, view in ipairs(require("diffview.lib").views) do
+        view:close()
+    end
 end)

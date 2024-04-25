@@ -4,7 +4,6 @@ return {
         "--clang-tidy",
         "--background-index",
         "--pch-storage=memory",
-        "--fallback-style=llvm",
         "--header-insertion=never",
         "--completion-style=detailed",
         "--function-arg-placeholders",
@@ -12,9 +11,11 @@ return {
     },
     init_options = {
         usePlaceholders = true,
+        restartAfterCrash = true,
         completeUnimported = true,
-        clangdFileStatus = true
+        clangdFileStatus = true,
+        semanticHighlighting = true,
+        fallbackFlags = { "-std=c++20", "-Wextra", "-Wall", "-Wpedantic" }
     },
-    filetypes = { "c", "cpp", "h", "hpp" },
-    init_option = { fallbackFlags = { "-std=c++17" } },
+    filetypes = { "c", "cpp", "h" },
 }

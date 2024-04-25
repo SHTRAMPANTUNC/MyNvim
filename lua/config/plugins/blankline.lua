@@ -12,7 +12,6 @@ return {
 						show_start = false,
 						show_end = false,
 					},
-					exclude = exclude_ft
 				})
 			end,
 			main = "ibl",
@@ -20,7 +19,7 @@ return {
 
 		{
 			"echasnovski/mini.indentscope",
-			enabled = true,
+			enabled = false,
 			version = false,
 			event = { "BufReadPre", "BufNewFile" },
 			opts = {
@@ -36,7 +35,6 @@ return {
 						"NvimTree",
 						"Trouble",
 						"lazy",
-						"mason",
 						"notify",
 						"toggleterm",
 						"lazyterm",
