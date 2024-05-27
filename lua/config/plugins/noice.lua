@@ -2,7 +2,7 @@ return {
     {
         "folke/noice.nvim",
         event = "VimEnter",
-        enabled = true,
+		enabled = not vim.g.started_by_firenvim,
         opts = {
             lsp = {
                 signature = {

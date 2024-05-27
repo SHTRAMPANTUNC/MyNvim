@@ -3,11 +3,10 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			{
-				-- "nvim-telescope/telescope-fzf-native.nvim",
-				-- build = "make",
+				"natecraddock/telescope-zf-native.nvim",
 			},
 		},
-        cmd = "Telescope oldfiles",
+		cmd = "Telescope oldfiles",
 		keys = {
 			{
 				";f",
@@ -28,7 +27,7 @@ return {
 						additional_args = { "--hidden" },
 					})
 				end,
-				desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+				desc = "Live Grep",
 			},
 			{
 				";;",
@@ -52,6 +51,17 @@ return {
 			local actions = require("telescope.actions")
 
 			telescope.setup({
+				extensions = {
+					["zf-native"] = {
+						file = {
+							enable = true,
+							highlight_results = true,
+							match_filename = true,
+							initial_sort = nil,
+							smart_case = true,
+						},
+					},
+				},
 				defaults = {
 					wrap_results = false,
 					prompt_prefix = "   ",
@@ -77,7 +87,7 @@ return {
 					},
 				},
 			})
-			-- require("telescope").load_extension("fzf")
+			require("telescope").load_extension("zf-native")
 		end,
 	},
 }

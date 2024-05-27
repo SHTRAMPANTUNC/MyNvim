@@ -1,36 +1,16 @@
-local lsp = require("lspconfig")
-local capabilities = require("config.lsp.handlers").capabilities
-local on_attach = require("config.lsp.handlers").on_attach
-
---LSP SETUP
-for _, server in ipairs(PREF.lsp.install_servers) do
-    lsp[server].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-    })
+local status_ok, lsp = pcall(require, "lspconfig")
+if not status_ok then
+    return
 end
 
-lsp.clangd.setup({
-    on_attach = on_attach,
-    cmd = require("config.lsp.settings.clangd").cmd,
-    init_options = require("config.lsp.settings.clangd").init_options,
-    filetypes = require("config.lsp.settings.clangd").filetypes
-})
-
-lsp.lua_ls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = require("config.lsp.settings.lua_ls").settings,
-})
-
-lsp.jsonls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = require("config.lsp.settings.jsonls").settings,
-})
-
-lsp.gopls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = require("config.lsp.settings.gopls").settings,
-})
+for _, server in pairs(PREF.lsp.install_servers) do
+    local opts = {
+        on_attach = require('config.lsp.handlers').on_attach,
+        capabilities = require('config.lsp.handlers').capabilities,
+    }
+    local has_server_opts, server_opts = pcall(require, "config.lsp.settings." .. server)
+    if has_server_opts then
+        opts = vim.tbl_deep_extend("force", server_opts, opts)
+    end
+    lsp[server].setup(opts)
+end

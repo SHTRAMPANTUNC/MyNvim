@@ -24,10 +24,9 @@ M.on_attach = function(client, bufnr)
     map("n", "<leader>ca", ":Lspsaga code_action<CR>")
     map("n", "<leader>o", ":Lspsaga outline<CR>")
     map("n", "<leader>rn", ":Lspsaga rename<CR>")
-
-    if client.server_capabilities.documentFormattingProvider then
-        map("n", "<space>f", vim.lsp.buf.format, { desc = "format code" })
-    end
+    map("n", "<space>f", function()
+		require("conform").format({ lsp_fallback = true })
+	end)
 
     vim.api.nvim_create_autocmd("CursorHold", {
         buffer = bufnr,

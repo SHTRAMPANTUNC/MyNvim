@@ -7,10 +7,12 @@ return {
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"c",
+                    "go",
 					"cpp",
 					"lua",
                     "nix",
 					"json",
+                    "yaml",
 					"cmake",
 				},
 				ignore_install = {},

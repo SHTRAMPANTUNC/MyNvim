@@ -11,21 +11,7 @@ return {
 
             local header = {
                 type = "text",
-                val = {
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    [[  ███╗   ██╗  ██╗   ██╗  ██╗  ███╗   ███╗  ]],
-                    [[  ████╗  ██║  ██║   ██║  ██║  ████╗ ████║  ]],
-                    [[  ██╔██╗ ██║  ██║   ██║  ██║  ██╔████╔██║  ]],
-                    [[  ██║╚██╗██║  ╚██╗ ██╔╝  ██║  ██║╚██╔╝██║  ]],
-                    [[  ██║ ╚████║   ╚████╔╝   ██║  ██║ ╚═╝ ██║  ]],
-                    [[  ╚═╝  ╚═══╝    ╚═══╝    ╚═╝  ╚═╝     ╚═╝  ]],
-                },
+                val = PREF.ui.dashboard,
                 opts = {
                     position = "center",
                     hl = "Function",
@@ -61,8 +47,12 @@ return {
                 type = "group",
                 val = {
                     button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-                    button("r", "  > Recent", ":Telescope oldfiles<CR>"),
-                    button("s", "  > Settings", ":e /home/kuper/MyFlake/home/programms/nvim/config/init.lua | :cd %:p:h | wincmd k | :NvimTreeOpen<CR>"),
+                    button("u", "  > Update plugins", ":Lazy update<CR>"),
+                    button(
+                        "s",
+                        "  > Settings",
+                        ":e /home/kuper/MyNixOS/home/modules/nvim/config/init.lua| :cd %:p:h | wincmd k | :NvimTreeOpen<CR>"
+                    ), -- <--- coz NixOS:)
                     button("q", "󰩈  > Quit NVIM", ":qa<CR>"),
                 },
                 opts = {
@@ -122,7 +112,7 @@ return {
 
             local opts = {
                 layout = {
-                    { type = "padding", val = 1 },
+                    { type = "padding", val = 10 },
                     section.header,
                     { type = "padding", val = 1 },
                     section.footer,
@@ -132,7 +122,7 @@ return {
                     section.stats,
                 },
                 opts = {
-                    margin = 44,
+                    margin = 42,
                 },
             }
 

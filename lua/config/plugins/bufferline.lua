@@ -2,7 +2,7 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		enable = true,
+		enabled = not vim.g.started_by_firenvim,
 		event = { "BufRead", "BufNewFile" },
 		config = function()
 			vim.opt.termguicolors = true

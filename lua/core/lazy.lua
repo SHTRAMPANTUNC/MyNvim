@@ -20,7 +20,7 @@ require("lazy").setup(configs, {
 		lazy = true,
 	},
 	install = {
-		colorscheme = { PREF.ui.colorscheme },
+		colorscheme = { "catppuccin" },
 	},
 	ui = {
 		border = PREF.ui.border,
