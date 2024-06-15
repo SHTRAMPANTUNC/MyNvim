@@ -8,7 +8,7 @@ return {
 				lua = { "stylua" },
 				cpp = { "clang_format" },
 				nix = { "alejandra" },
-				go = { "gofmt", "goimports" },
+				go =  { "gofmt", "goimports" },
 				html = { "prettier" },
 				css = { "prettier" },
 				json = { "prettier" },

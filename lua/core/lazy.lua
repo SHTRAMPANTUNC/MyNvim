@@ -15,7 +15,8 @@ end
 
 vim.opt.runtimepath:prepend(lazypath)
 
-require("lazy").setup(configs, {
+require("lazy").setup(configs,
+ {
 	defaults = {
 		lazy = true,
 	},
@@ -23,7 +24,7 @@ require("lazy").setup(configs, {
 		colorscheme = { "catppuccin" },
 	},
 	ui = {
-		border = PREF.ui.border,
+		border = "rounded" ,
 		title = "Plugin Manager",
 		title_pos = "center",
 		icons = {

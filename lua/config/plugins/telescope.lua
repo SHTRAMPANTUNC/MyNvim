@@ -73,6 +73,7 @@ return {
 					mappings = {
 						n = {
 							["q"] = "close",
+                            ["<c-d>"] = require("telescope.actions").delete_buffer,
 						},
 					},
 					layout_config = {

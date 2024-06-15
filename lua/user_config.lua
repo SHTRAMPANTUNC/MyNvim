@@ -26,7 +26,7 @@ PREF = {
         },
     },
 
-    plugins = {  -- NOTE: <--- enable/disable optional plugins
+    plugins = {  -- NOTE: <--- enable/disable optional plugins 
         mason = false, -- disable for NixOS
         wakatime = false,
         markdown_preview = false,

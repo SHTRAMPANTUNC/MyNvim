@@ -26,10 +26,4 @@ return {
 			}
 		end,
 	},
-
-	vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#c84053" }),
-	vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#de9800" }),
-	vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#4d699b" }),
-	vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#6e915f" }),
-	vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#d7e3d8" }),
 }

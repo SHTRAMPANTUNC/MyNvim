@@ -3,7 +3,10 @@
     "diagnostics.globals": [
         "return",
         "vim",
-        "fasle"
+        "fasle",
+        "padding",
+        "get_filename",
+        "get_listed_bufs"
     ],
     "diagnostics.disable": [
         "redefined-local",

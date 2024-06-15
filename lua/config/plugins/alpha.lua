@@ -46,14 +46,14 @@ return {
             local buttons = {
                 type = "group",
                 val = {
-                    button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-                    button("u", "  > Update plugins", ":Lazy update<CR>"),
+                    button("e", "📄 > New file", ":ene <BAR> startinsert <CR>"),
+                    button("u", "📥 > Update plugins", ":Lazy update<CR>"),
                     button(
                         "s",
-                        "  > Settings",
+                        "⚙️  > Settings",
                         ":e /home/kuper/MyNixOS/home/modules/nvim/config/init.lua| :cd %:p:h | wincmd k | :NvimTreeOpen<CR>"
                     ), -- <--- coz NixOS:)
-                    button("q", "󰩈  > Quit NVIM", ":qa<CR>"),
+                    button("q", "⛔️ > Quit NVIM", ":qa<CR>"),
                 },
                 opts = {
                     position = "center",
@@ -64,12 +64,12 @@ return {
             local function pluginstats()
                 local stats = require("lazy").stats()
                 local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                return " " .. stats.count .. " plugins"
+                return "🔌 " .. stats.count .. " plugins"
             end
 
             local function stats()
                 -- Number of plugins
-                local plugins_text = " v"
+                local plugins_text = "💾 v"
                     .. vim.version().major
                     .. "."
                     .. vim.version().minor

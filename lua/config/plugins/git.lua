@@ -1,50 +1,32 @@
 return {
 	{
-		"tpope/vim-fugitive",
-		event = { "User InGitRepo" },
-	},
-
-	{
-		"ruifm/gitlinker.nvim",
+		"NeogitOrg/neogit",
+		dependencies = {
+			{
+				"ruifm/gitlinker.nvim",
+				config = function()
+					require("gitlinker").setup()
+				end,
+			},
+			"sindrets/diffview.nvim",
+		},
 		event = { "User InGitRepo" },
 		config = function()
-			require("gitlinker").setup({
-				callbacks = {
-					["dev.azure.com"] = function(url_data)
-						vim.print(url_data)
-						local url = require("gitlinker.hosts").get_base_https_url(url_data)
-
-						if url_data.lstart then
-							if url_data.lend == nil then
-								url_data.lend = url_data.lstart
-							end
-							url = url
-								.. "?path=/"
-								.. url_data.file
-								.. "&version=GC"
-								.. url_data.rev
-								.. "&line="
-								.. url_data.lstart
-								.. "&lineEnd="
-								.. url_data.lend
-								.. "&lineStartColumn=1"
-								.. "&lineEndColumn=120"
-						end
-						return url
-					end,
+			require("neogit").setup({
+				graph_style = "unicode",
+				sort_branches = "-committerdate",
+				kind = "tab",
+				popup = {
+					["?"] = "HelpPopup",
+					["D"] = "DiffPopup",
+					["P"] = "PushPopup",
+					["Z"] = "StashPopup",
+					["b"] = "BranchPopup",
+					["c"] = "CommitPopup",
+					["l"] = "LogPopup",
+					["p"] = "PullPopup",
 				},
-				mappings = nil,
 			})
 		end,
-	},
-
-	{
-		"rbong/vim-flog",
-		cmd = "Flog",
-	},
-
-	{
-		"sindrets/diffview.nvim",
-		cmd = "DiffviewOpen",
 	},
 }

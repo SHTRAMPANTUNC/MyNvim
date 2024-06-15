@@ -1,9 +1,11 @@
 local M = {}
 
-M.move_line = function(op)
-	return function()
-		local start = op == "+" and 1 or 2
-		local count = vim.v.count
+local u = require("utils")
+
+function M.move_line(op)
+    return function()
+        local start = op == "+" and 1 or 2
+        local count = vim.v.count
 		local times = count == 0 and start or (op == "+" and count or count + 1)
 		local ok, _ = pcall(vim.cmd.move, op .. times)
 		if ok then
@@ -12,10 +14,9 @@ M.move_line = function(op)
 	end
 end
 
-M.move_selected = function(op)
+function M.move_selected(op)
 	return function()
-        local restore_autocmd = require("utils").disable_autocmd("toggle_relnum")
-
+		local restore_autocmd = u.disable_autocmd("toggle_relnum")
 		local start = op == "+" and "" or 2
 		local count = vim.v.count
 		local times = count == 0 and start or (op == "+" and count or count + 1)

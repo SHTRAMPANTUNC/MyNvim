@@ -17,7 +17,7 @@ vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
-vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+autocmd({ "InsertLeave", "WinEnter" }, {
 	callback = function()
 		local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
 		if ok and cl then
@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+autocmd({ "InsertEnter", "WinLeave" }, {
 	callback = function()
 		local cl = vim.wo.cursorline
 		if cl then
@@ -37,21 +37,21 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
 	desc = "Rid auto comment for new string",
 	callback = function()
 		vim.opt.formatoptions:remove({ "c", "r", "o" })
 	end,
 })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
 	desc = "Highlight copied text",
 	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
+		vim.highlight.on_yank({ higroup = "PmenuSel", timeout = 100 })
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
+autocmd("BufWinEnter", {
 	desc = "Open :help with vertical split",
 	pattern = { "*.txt" },
 	callback = function()
@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufHidden", {
+autocmd("BufHidden", {
 	desc = "Delete [No Name] buffers",
 	callback = function(data)
 		if data.file == "" and vim.bo[data.buf].buftype == "" and not vim.bo[data.buf].modified then
@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd("BufHidden", {
 })
 
 --Off highlight search
-vim.api.nvim_create_autocmd("User", {
+autocmd("User", {
 	pattern = "VeryLazy",
 	callback = function()
 		require("modules.key_listener")
@@ -89,13 +89,13 @@ local function check_git_repo()
 	end
 end
 
-vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, {
+autocmd({ "VimEnter", "DirChanged" }, {
 	callback = function()
 		vim.schedule(check_git_repo)
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
 	desc = "Jump to the last place you’ve visited in a file before exiting",
 	callback = function()
 		local ignore_ft = { "NvimTree_1", "toggleterm", "lazy" }
@@ -108,6 +108,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			end
 		end
 	end,
+})
+
+autocmd({ "InsertLeave" }, {
+    callback = function()
+        vim.fn.execute("silent! write")
+    end,
 })
 
 augroup('AutoCwd', {
@@ -144,21 +150,6 @@ augroup('AutoCwd', {
           end
         end)
       end)
-    end,
-  },
-})
-
-augroup('Autosave', {
-  { 'BufLeave', 'WinLeave', 'FocusLost' },
-  {
-    nested = true,
-    desc = 'Autosave on focus change.',
-    callback = function(info)
-      if vim.bo[info.buf].bt == '' then
-        vim.cmd.update({
-          mods = { emsg_silent = true },
-        })
-      end
     end,
   },
 })

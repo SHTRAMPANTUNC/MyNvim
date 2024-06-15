@@ -3,18 +3,6 @@ local M = {}
 ---Checking if the string in lowercase
 ---@return boolean
 
-function M.move_line(op)
-	return function()
-		local start = op == "+" and 1 or 2
-		local count = vim.v.count
-		local times = count == 0 and start or (op == "+" and count or count + 1)
-		local ok, _ = pcall(vim.cmd.move, op .. times)
-		if ok then
-			vim.cmd.norm("==")
-		end
-	end
-end
-
 function M.is_lower(str)
 	return str == string.lower(str)
 end
@@ -119,42 +107,75 @@ function M.feedkeys(f)
 	vim.api.nvim_feedkeys(term, "n", true)
 end
 
-
-
 M.root_patterns = {
-  '.git/',
-  'Makefile',
-  'makefile',
-  'CMakeLists.txt',
-  'MAKEFILE',
-  '.gitignore',
+	".git/",
+	"Makefile",
+	"makefile",
+	"CMakeLists.txt",
+	"MAKEFILE",
+	".gitignore",
 }
 
 ---@param path string?
 ---@param patterns string[]? root patterns
 ---@return string? nil if not found
 function M.proj_dir(path, patterns)
-  if not path or path == '' then
-    return nil
-  end
-  patterns = patterns or M.root_patterns
-  ---@diagnostic disable-next-line: undefined-field
-  local stat = vim.uv.fs_stat(path)
-  if not stat then
-    return
-  end
-  local dirpath = stat.type == 'directory' and path or vim.fs.dirname(path)
-  for _, pattern in ipairs(patterns) do
-    local root = vim.fs.find(pattern, {
-      path = dirpath,
-      upward = true,
-      type = pattern:match('/$') and 'directory' or 'file',
-    })[1]
-    if root and vim.uv.fs_stat(root) then
-      local dirname = vim.fs.dirname(root)
-      return dirname and vim.uv.fs_realpath(dirname) --[[@as string]]
-    end
-  end
+	if not path or path == "" then
+		return nil
+	end
+	patterns = patterns or M.root_patterns
+	---@diagnostic disable-next-line: undefined-field
+	local stat = vim.uv.fs_stat(path)
+	if not stat then
+		return
+	end
+	local dirpath = stat.type == "directory" and path or vim.fs.dirname(path)
+	for _, pattern in ipairs(patterns) do
+		local root = vim.fs.find(pattern, {
+			path = dirpath,
+			upward = true,
+			type = pattern:match("/$") and "directory" or "file",
+		})[1]
+		if root and vim.uv.fs_stat(root) then
+			local dirname = vim.fs.dirname(root)
+			return dirname and vim.uv.fs_realpath(dirname) --[[@as string]]
+		end
+	end
+end
+
+---@param group number|string Group name or id
+---@return function Callback to restore cleared group's autocmds
+function M.disable_autocmd(group)
+	local ok, aus = pcall(vim.api.nvim_get_autocmds, { group = group })
+	if ok then
+		vim.api.nvim_clear_autocmds({ group = group })
+		local function make_opts(au)
+			local opts = {
+				group = au.group,
+				desc = au.desc,
+				once = au.once,
+				pattern = au.pattern,
+			}
+
+			if au.command ~= "" then
+				opts.command = au.command
+			else
+				opts.callback = au.callback
+			end
+
+			return opts
+		end
+
+		return function()
+			vim.defer_fn(function()
+				for _, au in ipairs(aus) do
+					vim.api.nvim_create_autocmd(au.event, make_opts(au))
+				end
+			end, 0)
+		end
+	else
+		return function() end
+	end
 end
 
 return M
